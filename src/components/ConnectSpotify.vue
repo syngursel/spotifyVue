@@ -71,7 +71,7 @@
 				clientId: '00eccef5ce3f415dafcaadb5f7b982f7',
 				clientSecret: '2d02f275fb8f4d758c64c13efdf0f569',
 				scope: 'user-read-email user-library-read user-library-modify playlist-read-private playlist-modify-public playlist-modify-private playlist-read-collaborative',
-				redirectUri: 'http://localhost:8080/callback'
+				redirectUri: window.location + 'callback/'
 			}
 		},
 		computed: {
@@ -82,7 +82,7 @@
 		methods: {
 			//metodları $_playlistProps_foksiyon olarak olursa daha iyi olur
 			loginSpotify: function(callback) {
-				const url = "https://accounts.spotify.com/authorize?response_type=token&client_id=" + this.clientId + "&scope=" + encodeURIComponent(this.scope) + '&redirect_uri=' + encodeURIComponent(this.redirectUri);
+				const url = "https://accounts.spotify.com/authorize?response_type=token&client_id=" + this.clientId  + '&redirect_uri=' + encodeURIComponent(this.redirectUri) + "&scope=" + encodeURIComponent(this.scope);
 
 				window.location.href = url;
 			},

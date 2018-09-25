@@ -14,6 +14,7 @@
       }
     },
     created() {
+      console.log("callback")
       if(window.location.hash !== ""){
         this.accessToken = window.location.hash.split('&')[0].split("#access_token=")[1];
         this.tokenTime = window.location.hash.split('&')[2].split("expires_in=")[1];

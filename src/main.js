@@ -14,7 +14,7 @@ const router = new VueRouter({
 	{ path: '/playlist', component: PlaylistProps, name: 'playlistProps' },
 	{ path: '/callback', component: Callback, name: 'callback' }
 	],
-	mode: 'history'
+	mode: 'hash'
 });
 
 router.beforeEach(function (to, from, next) {
@@ -25,7 +25,24 @@ router.beforeEach(function (to, from, next) {
 			next("/");
 		}
 	} else {
-		next();
+		if(to.path.includes('/access_token')){
+
+			localStorage.setItem("accessToken", window.location.hash.split('&')[0].split("#/access_token=")[1]);
+			localStorage.setItem("tokenTime", window.location.hash.split('&')[2].split("expires_in=")[1]);
+			fetch("https://api.spotify.com/v1/me",{
+				headers: {
+					'Authorization': 'Bearer ' + localStorage.getItem("accessToken")
+				}
+			})
+			.then((res) => { return res.json() })
+			.then((res) => {
+				localStorage.setItem("user", JSON.stringify(res));
+				next("/playlist");
+			});
+			
+		} else {
+			next();
+		}
 	}
 });
 

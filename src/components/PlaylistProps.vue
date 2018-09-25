@@ -55,9 +55,27 @@
 									Create new playlist with the following playlists
 								</button>
 								<div>
-									<table class="table table-borderless text-white-op table-vcenter">
+									<table class="js-table-checkable table-responsive table table-hover text-white-op table-vcenter">
+										<thead>
+											<tr>
+												<th class="text-center">
+													<label class="css-input css-checkbox css-checkbox-sm css-checkbox-success remove-margin-t remove-margin-b">
+														<input type="checkbox" @click="tablePlaylistAllSelect"><span></span>
+													</label>
+												</th>
+												<th>Name</th>
+												<th></th>
+												<th class="text-center" >Creator</th>
+												<th class="text-center" ><i class="si si-music-tone"></i> </th>
+											</tr>
+										</thead>
 										<tbody>
-											<tr v-for="playlist in playlists.items">
+											<tr v-for="playlist in playlists.items" :key="playlist.id" @click="selectedPlaylist(playlist)" :class="{active: tablePlaylistSelected(playlist)}">
+												<td class="text-center">
+													<label class="css-input css-checkbox css-checkbox-sm css-checkbox-success">
+														<input type="checkbox" :id="playlist.id" :name="playlist.id" :checked="tablePlaylistSelected(playlist)"><span></span>
+													</label>
+												</td>
 												<td>
 													<strong>{{playlist.name}}</strong>
 												</td>
@@ -65,14 +83,12 @@
 												</td>
 												<td class="text-center">
 													<span class="label label-info" v-if="playlist.owner.display_name !== null">
-														Created by 
 														{{playlist.owner.display_name}}
 													</span>
 												</td>
 												<td class="text-center">
 													<span class="label label-danger">
 														<strong>{{playlist.tracks.total}} </strong>
-														<i class="si si-music-tone"></i> 
 													</span>
 												</td>
 											</tr>
@@ -102,6 +118,7 @@
 				selectedCategory: {},
 				playlists: [],
 				playlistTracks: [],
+				selectedPlaylists: [],
 				user: {},
 				accessToken: ""
 			}
@@ -133,6 +150,22 @@
 			}
 		},
 		methods: {
+			tablePlaylistAllSelect: function() {
+				let playlist = [];
+				this.selectedPlaylists = playlist.concat(this.playlists);
+			},
+			selectedPlaylist: function(playlist) {
+				if(!this.selectedPlaylists.includes(playlist)){
+					this.selectedPlaylists.push(playlist);
+				} else {
+					let index = this.selectedPlaylists.indexOf(playlist);
+					this.selectedPlaylists.splice(index,1);
+				}
+				console.log(playlist.name);
+			},
+			tablePlaylistSelected: function(playlist){
+				return this.selectedPlaylists.includes(playlist);
+			},
 			getCategories: function() {
 				fetch(`https://api.spotify.com/v1/browse/categories?limit=50`,{
 					headers: {
