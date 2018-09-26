@@ -146,7 +146,7 @@
 				return this.user.display_name === null;
 			},
 			logout: function() {
-				return "/";
+				return "/spotifyVue";
 			}
 		},
 		methods: {
