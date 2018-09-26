@@ -1,5 +1,5 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Vue from './theme/vue-js/vue.js'
+import VueRouter from './theme/vue-js/vue-router.js'
 
 Vue.use(VueRouter);
 
