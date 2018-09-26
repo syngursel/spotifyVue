@@ -58,11 +58,11 @@
 									<table class="js-table-checkable table-responsive table table-hover text-white-op table-vcenter">
 										<thead>
 											<tr>
-												<th class="text-center">
+												<!--<th class="text-center">
 													<label class="css-input css-checkbox css-checkbox-sm css-checkbox-success remove-margin-t remove-margin-b">
 														<input type="checkbox" @click="tablePlaylistAllSelect"><span></span>
 													</label>
-												</th>
+												</th>-->
 												<th>Name</th>
 												<th></th>
 												<th class="text-center" >Creator</th>
@@ -71,11 +71,11 @@
 										</thead>
 										<tbody>
 											<tr v-for="playlist in playlists.items" :key="playlist.id" @click="selectedPlaylist(playlist)" :class="{active: tablePlaylistSelected(playlist)}">
-												<td class="text-center">
+												<!--<td class="text-center">
 													<label class="css-input css-checkbox css-checkbox-sm css-checkbox-success">
 														<input type="checkbox" :id="playlist.id" :name="playlist.id" :checked="tablePlaylistSelected(playlist)"><span></span>
 													</label>
-												</td>
+												</td>-->
 												<td>
 													<strong>{{playlist.name}}</strong>
 												</td>
