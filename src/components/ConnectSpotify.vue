@@ -62,7 +62,7 @@
     <footer id="page-footer" class="content-mini content-mini-full font-s12 bg-primary-dark-op clearfix">
       <div class="pull-right text-white-op">
         Created by <a class="font-w600" href="https://www.linkedin.com/in/g%C3%BCrsel-gazi-i%C3%A7t%C3%BCzer-499798a0/"
-                      target="_blank">Gürsel Gazi İçtüzer</a>
+                      target="_blank">Gürsel Gazi İçtüzer *</a>
       </div>
     </footer>
 
